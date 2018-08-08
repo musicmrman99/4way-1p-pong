@@ -2,10 +2,13 @@
 A four-way (horizontal and vertical), single-player (you control all paddles), never-ending (the game restarts when you loose - be prepared!) version of pong.
 
 # History
-Original development stopped 2014-09-02. Feel free to open a pull request if you want to contribute!
+Original development stopped 2014-09-02. Feel free to open a pull request if you want to continue it!
 
 # Compilation
-You can compile the `.bas` (FreeBASIC) file with the [freebasic compiler](https://sourceforge.net/projects/fbc/files/ "FreeBASIC Compiler on SourceFourge") (last tested with `fbc` version 1.05.0).
+You can compile the `.bas` (FreeBASIC) file with the [freebasic compiler](https://sourceforge.net/projects/fbc/files/ "FreeBASIC Compiler on SourceFourge") (last tested with `fbc` version 1.05.0):
+```
+fbc pong.bas
+```
 
 # Known Issues
 - If the ball hits the *side* of a paddle, it will 'stick'.
