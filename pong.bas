@@ -1,6 +1,8 @@
 ' vars
 dim as integer mx ' mouse x
 dim as integer my ' mouse y
+dim as integer realmx ' mouse x - does not change if mouse goes off screen
+dim as integer realmy ' mouse y - does not change if mouse goes off screen
 dim as integer mb ' mouse buttons
 dim as integer bx ' ball x
 dim as integer by ' ball y
@@ -23,6 +25,12 @@ screenres 640,480,24
 
 here:
 getmouse (mx,my, ,mb)
+if mx > -1 then
+	realmx = mx
+end if
+if my > -1 then
+	realmy = my
+end if
 
 ' >> this line was put in at a later date <<
 if multikey(16) then end ' if 'q' key pressed then end the program
@@ -31,13 +39,13 @@ if multikey(16) then end ' if 'q' key pressed then end the program
 if mb=4 then end
 
 ' if it hits off the bars turn the ball around
-if (bx < 20 or bx > 620) and (by > my-bsize and by < my+bsize) then
+if (bx < 20 or bx > 620) and (by > realmy-bsize and by < realmy+bsize) then
 	' 1 more point per ball and bar collision
 	points=points+1
 	
 	bxad = bxad * -1
 end if
-if (by < 20 or by > 460) and (bx > mx-bsize and bx < mx+bsize) then
+if (by < 20 or by > 460) and (bx > realmx-bsize and bx < realmx+bsize) then
 	' 1 more point per ball and bar collision
 	points=points+1
 	
@@ -77,10 +85,10 @@ by=by+byad
 line (0,0)-(640,480),0,bf
 
 ' bars (rgb = 0,240,0)
-line (mx-bsize,5)-(mx+bsize,15),61440,bf
-line (mx-bsize,465)-(mx+bsize,475),61440,bf
-line (5,my-bsize)-(15,my+bsize),61440,bf
-line (625,my-bsize)-(635,my+bsize),61440,bf
+line (realmx-bsize,5)-(realmx+bsize,15),61440,bf
+line (realmx-bsize,465)-(realmx+bsize,475),61440,bf
+line (5,realmy-bsize)-(15,realmy+bsize),61440,bf
+line (625,realmy-bsize)-(635,realmy+bsize),61440,bf
 
 ' ball (rgb = 0,0,240)
 circle (bx,by),10,240, , , ,F
